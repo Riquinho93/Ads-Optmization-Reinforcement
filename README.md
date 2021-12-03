@@ -8,12 +8,12 @@ In this study, I reviewed the article "Reinforcement Learning: The Concept Behin
 and apply the concepts to an ad optimization database I found on Kaggle.
 
 The main subject for using the UCB which focuses on two concepts: exploration and
-explotation. 
+exploitation. 
 
 - exploration: gives equal chances of choice for all actions, regardless of their
 average reward. Even stocks with the lowest average rewards chosen will be chosen.
 
-- explotation: is a technique that will always be looking to repeat the action that has already
+- exploitation: is a technique that will always be looking to repeat the action that has already
 presented the best result, being the one with the greatest reward, remembering
 that we don't know which action gives the highest average reward of all possible.
 
