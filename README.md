@@ -29,31 +29,43 @@ Find the Click Through Rate (CTR) of certain Ad.
 
 ## Upper Confidence Bound (UCB)
 
+UCB is a deterministic algorithm that means there is no uncertainty or probability factor, that is, the success rate distribution was calculated based on the probability distribution.
+
+For a better understanding of the UCB it is necessary to understand the MultiArmed Bandit Problem.
 
 
 ## Implementation
 
 The first thing, we need import our library that we will use our code.
 
+
 import pandas as pd
 import math
 import matplotlib.pyplot as plt
 
+
+
 After this, we need read our dataset with Pandas. We can do it with this command:
+
 
 path = "/mydrive/data/"
 df = pd.read_csv(path + "Ads_Optimization.csv")
+
 
 ### Data Exploration
 
 Now, we can explore our dataset and see what we have there. I used tree things of pandas: shape, info and describe.
 
+
 df.shape
 (10000, 10)
 
+
 With df.shape give our the shape our dataset, 1000 lines and 10 columns.
 
+
 df.info()
+
 
 <class 'pandas.core.frame.DataFrame'>
 RangeIndex: 10000 entries, 0 to 9999
@@ -74,9 +86,12 @@ dtypes: int64(10)
 memory usage: 781.4 KB
 None
 
+
 With df.info give our information about our dataset.
 
+
 df.describe()
+
 
                Ad 1          Ad 2  ...          Ad 9        Ad 10
 count  10000.000000  10000.000000  ...  10000.000000  10000.00000
@@ -90,8 +105,11 @@ max        1.000000      1.000000  ...      1.000000      1.00000
 
 [8 rows x 10 columns]
 
+
 And with df.describe() we have a little statistic just with this simple command. 
+
 ### Upper Confidence Bound code
+
 
 number_ads = 10 # numbers of ads (number of columns in this case)
 observations = 1000  # number of observations ( number of lines in this case)
@@ -120,6 +138,7 @@ for n in range(0, observations):
   reward = df.values[n, ads]
   sum_rewards[ads] = sum_rewards[ads] + reward
   total_reward = total_reward + reward
+
 
 ### Visualizing results
 
