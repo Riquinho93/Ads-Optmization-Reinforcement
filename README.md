@@ -33,6 +33,30 @@ UCB is a deterministic algorithm that means there is no uncertainty or probabili
 
 For a better understanding of the UCB it is necessary to understand the MultiArmed Bandit Problem.
 
+TechTalks [2] explain the name of the MultiArmed Bandit Problem comes from an imaginary scenario where a player is in a row of slot machines. The player knows that machines have different win rates, but doesn't know which one offers the greatest reward.
+
+If he limits himself to one machine, he may lose the chance to select the machine with the highest win rate. Therefore, the player must find an efficient way to discover the machine with the highest reward without spending too much of their tokens.
+
+Ad optimization is a typical example of a multi-armed bandit problem. In this case, the reinforcement learning agent must find a way to discover the ad with the highest CTR without wasting too much valuable ad impressions on inefficient ads.
+
+### UCB Math
+
+Next is the algorithm inside the UCB that updates the confidence limits of each machine after each round. Let's see the explanation of  AMAL NAIR [3].
+
+Step 1: Two values are considered for each round of exploration of a machine
+The number of times each machine has been selected till round n
+The sum of rewards collected by each machine till round n
+
+Step 2: At each round, we compute the average reward and the confidence interval  of the machine i up to n rounds as follows:
+
+Average reward :
+
+
+Confidence Interval :
+
+Step 3: The machine with the maximum UCB is selected.
+
+
 
 ## Implementation
 
@@ -110,6 +134,13 @@ And with df.describe() we have a little statistic just with this simple command.
 
 ### Upper Confidence Bound code
 
+Now let's start our algorithm, let's iterate over each machine on each observation starting with B1 (indexed 0) and with a maximum upper bound value of zero.
+
+At each round, we will check if a machine was selected before or not. If so, the algorithm proceeds to calculate the machine's average rewards, delta, and superior confidence. Otherwise, ie if the machine is being selected for the first time, it sets a default upper limit value of 1e400.
+
+After each round, the machine with the highest upper limit value is selected, the number of selections along with the actual reward and the sum of rewards for the selected machine are updated.
+
+After all rounds are completed, we will have a machine with a maximum value of the upper limit. See the code below:
 
 number_ads = 10 # numbers of ads (number of columns in this case)
 observations = 1000  # number of observations ( number of lines in this case)
@@ -145,3 +176,5 @@ for n in range(0, observations):
 ### References:
 
 [1] https://analyticsindiamag.com/ad-click-through-rate-ctr-prediction-using-reinforcement-learning/
+[2] TECHTALKS. How reinforcement learning chooses the ads you see. Available in: <https://bdtechtalks.com/2021/02/22/reinforcement-learning-ad-optimization/>.
+[3] ANALYTICSINDIAMAG. Reinforcement Learning : The Concept  Behind UCB Explained With Code. Available in:<https://analyticsindiamag.com/reinforcement-learning-the-concept-behind-ucb-explained-with-code/>
