@@ -65,7 +65,7 @@ UCB:
 
 ## Implementation
 
-The first thing, we need import our library that we will use our code.
+Firstly, we need to import our libraries that we will use our code.
 
 
        import pandas as pd
@@ -74,7 +74,7 @@ The first thing, we need import our library that we will use our code.
 
 
 
-After this, we need read our dataset with Pandas. We can do it with this command:
+After that we need to read our dataset with Pandas. We can do this with this command:
 
 
       path = "/mydrive/data/"
@@ -83,14 +83,14 @@ After this, we need read our dataset with Pandas. We can do it with this command
 
 ### Data Exploration
 
-Now, we can explore our dataset and see what we have there. I used tree things of pandas: shape, info and describe.
+Now we can explore our dataset and see what we have there. I used stuff from pandas trees: shape, info and describe.
 
 
         df.shape 
 > (10000, 10)
 
 
-With df.shape give our the shape our dataset, 1000 lines and 10 columns.
+With df.shape, provide the format of our dataset, 1000 rows and 10 columns.
 
 
         df.info()
@@ -114,7 +114,7 @@ With df.shape give our the shape our dataset, 1000 lines and 10 columns.
 >        None
 
 
-With df.info give our information about our dataset.
+With df.info() provide our information about our dataset.
 
 
           df.describe()
@@ -131,7 +131,7 @@ With df.info give our information about our dataset.
 >         [8 rows x 10 columns]
 
 
-And with df.describe() we have a little statistic just with this simple command. 
+And with df.describe() we have some statistics just with this simple command.
 
 ### Upper Confidence Bound code
 
@@ -147,8 +147,8 @@ After all rounds are completed, we will have a machine with a maximum value of t
        
        number_ads = 10 # numbers of ads (number of columns in this case)
        observations = 1000  # number of observations ( number of lines in this case)
-       numbers_selections = [0] * number_ads  # initialing our variable of number of selections of each ads
-       sum_rewards = [0] * number_ads    # initializing our variable of sums of rewards of each ads
+       numbers_selections = [0] * number_ads  # initializing our number of selections variable for each ad
+       sum_rewards = [0] * number_ads    # initializing our number of selections variable for each ad
        total_reward = 0
        selected_ads = []
        for n in range(0, observations):
@@ -157,9 +157,9 @@ After all rounds are completed, we will have a machine with a maximum value of t
          for i in range(0, number_ads):
 
            if numbers_selections[i] > 0:
-             average = sum_rewards[i]/numbers_selections[i]      # first formule
-             delta = math.sqrt(3/2 * math.log(n + 1) / numbers_selections[i])    # second formule
-             upper_bound = average + delta    # third formule
+             average = sum_rewards[i]/numbers_selections[i]      # Average reward
+             delta = math.sqrt(3/2 * math.log(n + 1) / numbers_selections[i])    # Confidence Interval
+             upper_bound = average + delta    # UCB
            else:
              upper_bound = 1e400
            if upper_bound > max_upper_bound:
